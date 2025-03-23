@@ -81,7 +81,7 @@ const TodoList = () => {
 
                         <div key={formatDate(day)} className="flex flex-col gap-2">
                             {/* Day label */}
-                            <h2 className="text-xl font-bold bg-green w-fit mb-2 p-2 rounded text-white">{formatDate(day)}</h2>
+                            <h2 className="text-[10px] md:text-sm font-bold bg-green w-fit mb-2 p-2 rounded text-white">{formatDate(day)}</h2>
                             {todos.map((todo) => (
                                 <motion.div
                                     variants={todoListVariants}
