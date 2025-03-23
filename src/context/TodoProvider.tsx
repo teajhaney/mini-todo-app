@@ -2,11 +2,13 @@
 import { createContext, useContext, useState, useEffect } from 'react';
 
 // Define Todo interface
-interface Todo {
+export interface Todo {
     id: string;
     text: string;
     completed: boolean;
-    date: string;
+    date: string; // Full timestamp
+    day: string;  // e.g., "March 23, 2025"
+    dateEdited?: string;
     edited?: boolean;
 }
 
@@ -55,14 +57,12 @@ export const TodoProvider = ({ children }: TodoProviderProps) => {
             text,
             completed: false,
             date: new Date().toLocaleString("en-US", {
-                year: "numeric",
-                month: "long",
-                day: "numeric",
                 hour: "2-digit",
                 minute: "2-digit",
                 second: "2-digit",
                 hour12: true, // Use false for 24-hour format
             }),
+            day: new Date().toISOString().split("T")[0]
         };
         setTodosList([...todosList, newTodo]);
 
@@ -89,7 +89,7 @@ export const TodoProvider = ({ children }: TodoProviderProps) => {
         setTodosList((prevTodos) =>
             prevTodos.map((todo) =>
                 todo.id === id ? {
-                    ...todo, text: newText, edited: true, date: new Date().toLocaleString("en-US", {
+                    ...todo, text: newText, edited: true, dateEdited: new Date().toLocaleString("en-US", {
                         year: "numeric",
                         month: "long",
                         day: "numeric",
