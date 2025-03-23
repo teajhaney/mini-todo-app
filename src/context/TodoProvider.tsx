@@ -14,7 +14,13 @@ interface TodoContextValue {
     todosList: Todo[];
     setTodosList: React.Dispatch<React.SetStateAction<Todo[]>>;
     addTodo: (text: string) => void;
+    resetTodo: () => void;
+    toggleTodo: (id: string) => void;
+    editTodo: (id: string, newText: string) => void;
+    deleteTodo: (id: string) => void;
 }
+
+
 
 // Create context with default value
 export const StateContext = createContext<TodoContextValue | undefined>(undefined);
@@ -63,13 +69,38 @@ export const TodoProvider = ({ children }: TodoProviderProps) => {
         }, 2000)
     };
 
+    //reset todolist back to length zero
     const resetTodo = () => {
-            
-        }
+        localStorage.clear();
+        setTodosList([]);
+    }
 
 
+    //toggle completed
+    const toggleTodo = (id: string) => {
+        setTodosList((prevTodos) =>
+            prevTodos.map((todo) =>
+                todo.id === id ? { ...todo, completed: !todo.completed } : todo
+            )
+        );
+    };
+
+    //Edit todo
+    const editTodo = (id: string, newText: string) => {
+        setTodosList((prevTodos) =>
+            prevTodos.map((todo) =>
+                todo.id === id ? { ...todo, text: newText } : todo
+            )
+        );
+    }
+
+
+    //Delete todo
+    const deleteTodo = (id: string) => {
+        setTodosList(todosList.filter(todo => todo.id !== id));
+    };
     return (
-        <StateContext.Provider value={{ todosList, setTodosList, addTodo }}>
+        <StateContext.Provider value={{ todosList, setTodosList, addTodo, resetTodo, toggleTodo, editTodo, deleteTodo }}>
             {children}
         </StateContext.Provider>
     );

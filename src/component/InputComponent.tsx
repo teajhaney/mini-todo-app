@@ -7,7 +7,7 @@ interface InputComponentProps {
 
 const InputComponent = ({ placeHolder, onChange, value }: InputComponentProps) => {
     return (
-        <input type='text' className='h-10 border border-green px-2 bg-gray rounded-lg focus:outline-none focus:ring focus:ring-primary' placeholder={placeHolder} onChange={onChange} value={value} />
+        <input type='text' className='h-10 w-full border border-green px-2 bg-gray rounded-lg focus:outline-none  ' placeholder={placeHolder} onChange={onChange} value={value} />
 
     )
 }
