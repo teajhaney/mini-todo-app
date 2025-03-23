@@ -64,7 +64,7 @@ const TodoList = () => {
                                     e.stopPropagation();
                                     toggleTodo(todo.id)
                                 }} id="" />
-                                <span className={`${todo.completed ? "line-through " : ""}`}>{todo.text}</span>
+                                <span className={`${todo.completed ? "line-through " : ""} bg-red-500 break-words`}>{todo.text}</span>
                             </div>
                             <div className="flex gap-2 text-2xl font-extrabold items-start">
                                 <CiEdit onClick={(e) => handleClickToEdit(e, todo.id, todo.text)} className="text-green" />
@@ -94,5 +94,4 @@ const TodoList = () => {
 }
 
 export default TodoList
-
 
