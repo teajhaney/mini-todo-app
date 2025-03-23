@@ -7,6 +7,7 @@ interface Todo {
     text: string;
     completed: boolean;
     date: string;
+    edited?: boolean;
 }
 
 // Define context value interface
@@ -87,7 +88,17 @@ export const TodoProvider = ({ children }: TodoProviderProps) => {
     const editTodo = (id: string, newText: string) => {
         setTodosList((prevTodos) =>
             prevTodos.map((todo) =>
-                todo.id === id ? { ...todo, text: newText } : todo
+                todo.id === id ? {
+                    ...todo, text: newText, edited: true, date: new Date().toLocaleString("en-US", {
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
+                        hour: "2-digit",
+                        minute: "2-digit",
+                        second: "2-digit",
+                        hour12: true, // Use false for 24-hour format
+                    }),
+                } : todo
             )
         );
     }

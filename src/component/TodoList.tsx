@@ -58,20 +58,29 @@ const TodoList = () => {
                         layout
                         transition={{ duration: 0.5 }}
                         key={todo.id} className="cursor-pointer">
-                        <div className="bg-gray p-2 flex justify-between items-start rounded-lg h-fit  shadow-[0px_0px_5px_1px_rgba(0,0,0,0.1)]">
-                            <div className="flex gap-2 items-start w-full  ">
-                                {/* checkbox */}
-                                <input type="checkbox" name="todo" checked={todo.completed} value={todo.id} onChange={(e) => {
-                                    e.stopPropagation();
-                                    toggleTodo(todo.id)
-                                }} id="" className="accent-green" />
-
-                                {/* text */}
-                                <span className={`${todo.completed ? "line-through text-secondary/50 " : ""}  break-words w-full  `}>{todo.text}</span>
+                        <div className="flex flex-col gap-2">
+                            <div className="bg-gray p-2 flex justify-between items-start rounded-lg h-fit  shadow-[0px_0px_5px_1px_rgba(0,0,0,0.1)]">
+                                <div className="flex gap-2 items-start w-full  ">
+                                    {/* checkbox */}
+                                    <input type="checkbox" name="todo" checked={todo.completed} value={todo.id} onChange={(e) => {
+                                        e.stopPropagation();
+                                        toggleTodo(todo.id)
+                                    }} id="" className="accent-green" />
+                                    {/* text */}
+                                    <span className={`${todo.completed ? "line-through text-secondary/50 " : ""}  break-words w-full  `}>{todo.text}</span>
+                                </div>
+                                {/* edit and delete */}
+                                <div className="flex gap-2 text-2xl font-extrabold items-start ">
+                                    <CiEdit onClick={(e) => {
+                                        if (!todo.completed) handleClickToEdit(e, todo.id, todo.text);
+                                    }} className="text-green" />
+                                    <PiTrashThin className="text-red-500" onClick={(e) => handleDelete(e, todo.id)} /> </div>
                             </div>
-                            <div className="flex gap-2 text-2xl font-extrabold items-start ">
-                                <CiEdit onClick={(e) => handleClickToEdit(e, todo.id, todo.text)} className="text-green" />
-                                <PiTrashThin className="text-red-500" onClick={(e) => handleDelete(e, todo.id)} /> </div>
+                            {/* time */}
+                            <div className={`flex ${todo.edited ? 'justify-between' : 'justify-end'}`}>
+                                {todo.edited && <span className="text-[7px]  text-secondary/50 italic">Edited</span>}
+                                <p className="text-[7px] ">{todo.date}</p>
+                            </div>
                         </div>
                     </motion.div>
                 )).reverse()
