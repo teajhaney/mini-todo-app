@@ -59,12 +59,12 @@ const TodoList = () => {
                         transition={{ duration: 0.5 }}
                         key={todo.id} className="cursor-pointer">
                         <div className="bg-gray p-2 flex justify-between items-start rounded-lg h-fit shadow-[0px_0px_5px_1px_rgba(0,0,0,0.1)]">
-                            <div className="flex gap-5 items-start min-w-0  ">
+                            <div className="flex gap-5 items-start  ">
                                 <input type="checkbox" name="todo" checked={todo.completed} value={todo.id} onChange={(e) => {
                                     e.stopPropagation();
                                     toggleTodo(todo.id)
                                 }} id="" />
-                                <span className={`${todo.completed ? "line-through " : ""} bg-red-500 break-words max-w-full`}>{todo.text}</span>
+                                <span className={`${todo.completed ? "line-through " : ""} bg-red-500 break-words `}>{todo.text}</span>
                             </div>
                             <div className="flex gap-2 text-2xl font-extrabold items-start ">
                                 <CiEdit onClick={(e) => handleClickToEdit(e, todo.id, todo.text)} className="text-green" />
