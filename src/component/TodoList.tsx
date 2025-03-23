@@ -45,7 +45,7 @@ const TodoList = () => {
     };
 
     return (
-        <div className="w-full h-62 lg:h-[900px] border border-green overflow-y-auto [&::-webkit-scrollbar]:hidden flex flex-col gap-5">
+        <div className="w-full  h-[550px] overflow-y-auto [&::-webkit-scrollbar]:hidden flex flex-col gap-5">
             {todosList.length === 0 ? (
                 <p className="text-center text-5xl font-bold">No todo yet</p>
             ) : (
@@ -58,15 +58,15 @@ const TodoList = () => {
                         layout
                         transition={{ duration: 0.5 }}
                         key={todo.id} className="cursor-pointer">
-                        <div className="bg-gray p-2 flex justify-between items-start rounded-lg h-fit">
-                            <div className="flex gap-5">
-                                <input type="checkbox" name="todo" value={todo.id} onChange={(e) => {
+                        <div className="bg-gray p-2 flex justify-between items-start rounded-lg h-fit shadow-[0px_0px_5px_1px_rgba(0,0,0,0.1)]">
+                            <div className="flex gap-5 items-start ">
+                                <input type="checkbox" name="todo" checked={todo.completed} value={todo.id} onChange={(e) => {
                                     e.stopPropagation();
                                     toggleTodo(todo.id)
                                 }} id="" />
-                                <span className={todo.completed ? "line-through" : ""}>{todo.text}</span>
+                                <span className={`${todo.completed ? "line-through " : ""}`}>{todo.text}</span>
                             </div>
-                            <div className="flex gap-2 text-2xl font-extrabold">
+                            <div className="flex gap-2 text-2xl font-extrabold items-start">
                                 <CiEdit onClick={(e) => handleClickToEdit(e, todo.id, todo.text)} className="text-green" />
                                 <PiTrashThin className="text-red-500" onClick={(e) => handleDelete(e, todo.id)} /> </div>
                         </div>
@@ -79,13 +79,12 @@ const TodoList = () => {
                         initial={{ opacity: 0, scale: 0.8 }}
                         animate={{ opacity: 1, scale: 1 }}
                         exit={{ opacity: 0, scale: 0.8 }}
-                        className="flex flex-col gap-5 bg-white p-6 rounded-lg shadow-[0px_0px_5px_3px_rgba(0,0,0,0.1)] w-7/12">
+                        className="flex flex-col gap-5 bg-white p-6 rounded-lg shadow-[0px_0px_5px_3px_rgba(0,0,0,0.1)] w-full mx-3 2xl:mx-auto 2xl:w-[1350px]">
                         <h1 className="text-2xl font-bold">Edit your todo</h1>
                         <InputComponent placeHolder='Enter your todo...' value={editText} onChange={(e) => setEditText(e.target.value)} />
                         <div className="flex justify-center gap-2">
                             <ButtonComponent text='Cancel' onClick={handleCancelEdit} className="bg-red-500" />
-                            <ButtonComponent text="Confirm" onClick={() => handleConfirmEdit(editId)} className="bg-green" />
-                           
+                            <ButtonComponent text="Confirm" onClick={() => handleConfirmEdit(editId)} className="bg-green" />                     
                         </div>
                     </motion.div>
                 </div>
@@ -95,3 +94,5 @@ const TodoList = () => {
 }
 
 export default TodoList
+
+
