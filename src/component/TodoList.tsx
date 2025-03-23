@@ -59,7 +59,7 @@ const TodoList = () => {
                         transition={{ duration: 0.5 }}
                         key={todo.id} className="cursor-pointer">
                         <div className="bg-gray p-2 flex justify-between items-start rounded-lg h-fit shadow-[0px_0px_5px_1px_rgba(0,0,0,0.1)]">
-                            <div className="flex gap-5 items-start flex-1 min-w-0  ">
+                            <div className="flex gap-5 items-start min-w-0  ">
                                 <input type="checkbox" name="todo" checked={todo.completed} value={todo.id} onChange={(e) => {
                                     e.stopPropagation();
                                     toggleTodo(todo.id)
