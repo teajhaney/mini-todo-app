@@ -66,7 +66,7 @@ const TodoList = () => {
                                 }} id="" />
                                 <span className={`${todo.completed ? "line-through " : ""} bg-red-500 break-words max-w-full`}>{todo.text}</span>
                             </div>
-                            <div className="flex gap-2 text-2xl font-extrabold items-start flex-shrink-0">
+                            <div className="flex gap-2 text-2xl font-extrabold items-start ">
                                 <CiEdit onClick={(e) => handleClickToEdit(e, todo.id, todo.text)} className="text-green" />
                                 <PiTrashThin className="text-red-500" onClick={(e) => handleDelete(e, todo.id)} /> </div>
                         </div>
@@ -84,7 +84,7 @@ const TodoList = () => {
                         <InputComponent placeHolder='Enter your todo...' value={editText} onChange={(e) => setEditText(e.target.value)} />
                         <div className="flex justify-center gap-2">
                             <ButtonComponent text='Cancel' onClick={handleCancelEdit} className="bg-red-500" />
-                            <ButtonComponent text="Confirm" onClick={() => handleConfirmEdit(editId)} className="bg-green" />                     
+                            <ButtonComponent text="Confirm" onClick={() => handleConfirmEdit(editId)} className="bg-green" />
                         </div>
                     </motion.div>
                 </div>
