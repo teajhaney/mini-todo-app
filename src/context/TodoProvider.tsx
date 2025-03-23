@@ -63,10 +63,8 @@ export const TodoProvider = ({ children }: TodoProviderProps) => {
                 hour12: true, // Use false for 24-hour format
             }),
         };
+        setTodosList([...todosList, newTodo]);
 
-        setTimeout(() => {
-            setTodosList([...todosList, newTodo]);
-        }, 2000)
     };
 
     //reset todolist back to length zero
