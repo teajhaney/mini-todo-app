@@ -1,54 +1,21 @@
-# React + TypeScript + Vite
+# Mini Todo App
+A simple, responsive todo list application built with React, TypeScript, and Tailwind CSS. This app allows users to manage tasks with features like adding, editing, deleting, and toggling completion status, all while persisting data in localStorage. Todos are categorized by day for better organization.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Features
+**Add Todos:** Create new tasks with a timestamp and day label.
+**Edit Todos:** Modify existing tasks (disabled for completed todos).
+**Delete Todos:** Remove tasks with a trash icon.
+**Toggle Completion:** Check/uncheck todos with a custom checkbox (white check mark on green background).
+**Day Categorization:** Group todos by day (e.g., "March 23, 2025") with bold labels.
+**Persistent Storage:** Todos are saved to localStorage and persist across page reloads.
+**Responsive Design:** Works on small screens with text wrapping and no horizontal scrolling.
+**Animations:** Smooth transitions for adding and removing todos using framer-motion.
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+# Tech Stack
+**React:** Frontend library for building the UI.
+**TypeScript:** Adds static typing for better code reliability.
+**Tailwind CSS:** Utility-first CSS framework for styling.
+**React Context API:** Manages global state for todos.
+**Framer Motion:** Adds animations to todo items.
+**LocalStorage:** Stores todos persistently in the browser.
