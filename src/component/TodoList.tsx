@@ -36,8 +36,8 @@ const TodoList = () => {
 
     }
     const handleDelete = (e: React.MouseEvent<SVGElement>, id: string) => {
-        e.stopPropagation(),
-            deleteTodo(id);
+        e.stopPropagation();
+        deleteTodo(id);
 
     }
     const handleCancelEdit = () => {
