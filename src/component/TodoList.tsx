@@ -84,82 +84,84 @@ const TodoList = () => {
         <p className="text-center text-5xl font-bold">No todo yet</p>
       ) : (
         <div className="flex flex-col gap-4">
-          {Object.entries(groupedTodos).map(([day, todos]) => (
-            <div key={formatDate(day)} className="flex flex-col gap-2">
-              {/* Day label */}
-              <h2 className="text-[10px] md:text-sm font-bold bg-green w-fit mb-2 p-2 rounded text-white">
-                {formatDate(day)}
-              </h2>
-              {todos
-                .map((todo) => (
-                  <motion.div
-                    variants={todoListVariants}
-                    initial="hidden"
-                    animate="visible"
-                    exit="hidden"
-                    layout
-                    transition={{ duration: 0.5 }}
-                    key={todo.id}
-                    className="cursor-pointer">
-                    <div className="flex flex-col gap-2">
-                      <div className="bg-gray p-2 flex justify-between items-start rounded-lg h-fit  shadow-[0px_0px_5px_1px_rgba(0,0,0,0.1)]">
-                        <div className="flex gap-2 items-start w-full  ">
-                          {/* checkbox */}
-                          <input
-                            type="checkbox"
-                            name="todo"
-                            checked={todo.completed}
-                            value={todo.id}
-                            onChange={(e) => {
-                              e.stopPropagation();
-                              toggleTodo(todo.id);
-                            }}
-                            id=""
-                            className="accent-green"
-                          />
-                          {/* text */}
-                          <span
-                            className={`${
-                              todo.completed
-                                ? "line-through text-secondary/50 "
-                                : ""
-                            }  break-words w-full  `}>
-                            {todo.text}
-                          </span>
+          {Object.entries(groupedTodos)
+            .map(([day, todos]) => (
+              <div key={formatDate(day)} className="flex flex-col gap-2">
+                {/* Day label */}
+                <h2 className="text-[10px] md:text-sm font-bold bg-green w-fit mb-2 p-2 rounded text-white">
+                  {formatDate(day)}
+                </h2>
+                {todos
+                  .map((todo) => (
+                    <motion.div
+                      variants={todoListVariants}
+                      initial="hidden"
+                      animate="visible"
+                      exit="hidden"
+                      layout
+                      transition={{ duration: 0.5 }}
+                      key={todo.id}
+                      className="cursor-pointer">
+                      <div className="flex flex-col gap-2">
+                        <div className="bg-gray p-2 flex justify-between items-start rounded-lg h-fit  shadow-[0px_0px_5px_1px_rgba(0,0,0,0.1)]">
+                          <div className="flex gap-2 items-start w-full  ">
+                            {/* checkbox */}
+                            <input
+                              type="checkbox"
+                              name="todo"
+                              checked={todo.completed}
+                              value={todo.id}
+                              onChange={(e) => {
+                                e.stopPropagation();
+                                toggleTodo(todo.id);
+                              }}
+                              id=""
+                              className="accent-green"
+                            />
+                            {/* text */}
+                            <span
+                              className={`${
+                                todo.completed
+                                  ? "line-through text-secondary/50 "
+                                  : ""
+                              }  break-words w-full  `}>
+                              {todo.text}
+                            </span>
+                          </div>
+                          {/* edit and delete */}
+                          <div className="flex gap-2 text-2xl font-extrabold items-start ">
+                            <CiEdit
+                              onClick={(e) => {
+                                if (!todo.completed)
+                                  handleClickToEdit(e, todo.id, todo.text);
+                              }}
+                              className="text-green"
+                            />
+                            <PiTrashThin
+                              className="text-red-500"
+                              onClick={(e) => handleDelete(e, todo.id)}
+                            />{" "}
+                          </div>
                         </div>
-                        {/* edit and delete */}
-                        <div className="flex gap-2 text-2xl font-extrabold items-start ">
-                          <CiEdit
-                            onClick={(e) => {
-                              if (!todo.completed)
-                                handleClickToEdit(e, todo.id, todo.text);
-                            }}
-                            className="text-green"
-                          />
-                          <PiTrashThin
-                            className="text-red-500"
-                            onClick={(e) => handleDelete(e, todo.id)}
-                          />{" "}
+                        {/* time */}
+                        <div
+                          className={`flex ${
+                            todo.edited ? "justify-between" : "justify-end"
+                          }`}>
+                          {todo.edited && (
+                            <span className="text-[7px]  text-secondary/50 italic">
+                              Edited ({todo.dateEdited})
+                            </span>
+                          )}
+                          <p className="text-[7px] ">{todo.date}</p>
                         </div>
                       </div>
-                      {/* time */}
-                      <div
-                        className={`flex ${
-                          todo.edited ? "justify-between" : "justify-end"
-                        }`}>
-                        {todo.edited && (
-                          <span className="text-[7px]  text-secondary/50 italic">
-                            Edited ({todo.dateEdited})
-                          </span>
-                        )}
-                        <p className="text-[7px] ">{todo.date}</p>
-                      </div>
-                    </div>
-                  </motion.div>
-                ))
-                .reverse()}
-            </div>
-          ))}
+                    </motion.div>
+                  ))
+                  .reverse()}
+              </div>
+            ))
+            .reverse()}
         </div>
       )}
       {showEditBox && editId !== null && (
